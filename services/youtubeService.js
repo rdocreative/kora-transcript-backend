@@ -3,6 +3,7 @@ const path = require("path");
 
 async function baixarAudioYoutube(url) {
   const output = path.join("/tmp", "audio.mp3");
+  const cookies = path.join(__dirname, "..", "cookies.txt");
 
   await ytdl(url, {
     format: "bestaudio",
@@ -11,9 +12,10 @@ async function baixarAudioYoutube(url) {
     audioQuality: "0",
     output,
     quiet: true,
+    cookies: cookies
   });
 
-  console.log("🎧 Áudio baixado:", output);
+  console.log("🎧 Áudio baixado com cookies:", output);
   return output;
 }
 
